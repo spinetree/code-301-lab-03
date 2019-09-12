@@ -10,7 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <script id="section-template" type="text/x-handlebars-template">
-      <section class="{{keyword}}" data-horns="{{horns}}">
+      <section class="{{keyword}} horn" data-horns="{{horns}}">
         <h2>{{title}}</h2>
         <img src="{{image_url}}" alt="{{title}}">
         <p>{{description}}</p>
@@ -24,21 +24,10 @@
     <select>
       <option value="default">Filter by Keyword</option>
     </select>
-
     <button type="button" value="./data/page-1.json">Page 1</button>
     <button type="button" value="./data/page-2.json">Page 2</button>
-  
   </header>
-
-
   <main>
-
-    <section id="photo-template">
-      <h2></h2>
-      <img src="" alt="">
-      <p></p>
-    </section>
-
   </main>
   <footer>
     &copy; 2018 Code Fellows

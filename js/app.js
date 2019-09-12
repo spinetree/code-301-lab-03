@@ -16,31 +16,15 @@ function Horn(horn) {
     allHorns.push(this);
 };
 
-// A prototype that gets html content of #photo-template
-// It creates section element as a jQuery variable
-// It populates html content with an object instance property values
-// Lastly, it appends the new section content to the main element
 Horn.prototype.render = function() {
-    const myTemplate = $('#photo-template').html();
-    const $newSection = $('<section></section>');
-    $newSection.html(myTemplate);
-
-    $newSection.attr('class', this.keyword);
-    $newSection.addClass('horn');
-    $newSection.find('h2').text(this.title);
-    $newSection.find('img').attr('src', this.image_url);
-    $newSection.find('p').text(this.description);
-
-    $('main').append($newSection);
-};
+    $('main').append(this.toHtml());
+}
 
 Horn.prototype.toHtml = function() {
     let template = $('#section-template').html();
     let templateRender = Handlebars.compile(template);
     return templateRender(this);
 }
-
-
 
 // find all the keywords in allHorns
 const getKeywords = (arr) => {
@@ -95,7 +79,6 @@ const loadHorns = (parameter) => {
 // initial load of data from first JSON file
 loadHorns(dataFile);
 
-
 // event handler re-renders page when user clicks for a different set of data
 $('button').click(function () {
     const detatchedOptions = $('option.horn').detach();
@@ -110,7 +93,6 @@ $('button').click(function () {
 
     // console.log(detatchedOptions);
 })
-
 
 // remove existing sections from the page
 // remove existing options from the select list
