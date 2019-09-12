@@ -20,7 +20,7 @@ function Horn(horn) {
 // It creates section element as a jQuery variable
 // It populates html content with an object instance property values
 // Lastly, it appends the new section content to the main element
-Horn.prototype.render = function () {
+Horn.prototype.render = function() {
     const myTemplate = $('#photo-template').html();
     const $newSection = $('<section></section>');
     $newSection.html(myTemplate);
@@ -33,6 +33,13 @@ Horn.prototype.render = function () {
 
     $('main').append($newSection);
 };
+
+Horn.prototype.toHtml = function() {
+    let template = $('#section-template').html();
+    let templateRender = Handlebars.compile(template);
+    return templateRender(this);
+}
+
 
 
 // find all the keywords in allHorns
@@ -55,7 +62,6 @@ const fillSelect = () => {
     })
 }
 
-
 // do the show/hide when user makes a selection
 const handleFilter = () => {
     $('select').on('change', function () {
@@ -69,11 +75,9 @@ const handleFilter = () => {
     // TODO: make this handle the default value again with an if statement
 }
 
-
 // Ajax calls to get data from page-1.json
 // Uses Horn object constructor to create object instances
 // Uses render prototype to display images as the instances are created
-
 const loadHorns = (parameter) => {
 
     $.get(parameter, data => {
