@@ -1,21 +1,11 @@
 'use strict';
 
-console.log('working');
-
 const allHorns = [];
+const keywords = [];
 
-// const testHorn =   {
-//     "image_url": "http://3.bp.blogspot.com/_DBYF1AdFaHw/TE-f0cDQ24I/AAAAAAAACZg/l-FdTZ6M7z8/s1600/Unicorn_and_Narwhal_by_dinglehopper.jpg",
-//     "title": "UniWhal",
-//     "description": "A unicorn and a narwhal nuzzling their horns",
-//     "keyword": "narwhal",
-//     "horns": 1
-//   };
-
-// Constructor function
-
+// An object constructor accepting "horn" as a parameter 
+// Stores the created instance in the 'allHorns' array
 function Horn(horn) {
-    
     this.image_url = horn.image_url; 
     this.title = horn.title;
     this.description = horn.description;
@@ -25,32 +15,61 @@ function Horn(horn) {
     allHorns.push(this);
 };
 
-
-// AJAX
-
-$.get('/data/page-1.json', data => {
-
-    data.forEach(horn => {
-        let tempHorn = new Horn(horn);
-        tempHorn.render();
-        // console.log(tempHorn);
-    });
-    // console.log(allHorns);
-});
-
-
-// Render function
-
-Horn.prototype.render = function() {
-
+// A prototype that gets html content of #photo-template
+// It creates section element as a jQuery variable
+// It populates html content with an object instance property values
+// Lastly, it appends the new section content to the main element
+Horn.prototype.render = function() {    
     const myTemplate = $('#photo-template').html();
     const $newSection = $('<section></section>');
     $newSection.html(myTemplate);
-    
+
+    $newSection.attr('class', this.keyword);
     $newSection.find('h2').text(this.title);
     $newSection.find('img').attr('src', this.image_url);
     $newSection.find('p').text(this.description);
     
-    // console.log($newSection);
     $('main').append($newSection);
 };
+
+
+const fillSelect = () => {
+    keywords.forEach(keyword => {
+        const $newOption = $('<option></option>');
+        $newOption.text(keyword);
+        $newOption.attr('value', keyword);
+        $('select').append($newOption);
+    })
+}
+
+const getKeywords = (arr) => {
+    arr.forEach(horn => {
+        if(!keywords.includes(horn.keyword)){
+            keywords.push(horn.keyword);
+        }
+    })
+}               
+
+const handleFilter = () => {
+    $('select').on('change', function() {
+      let selected = $(this).val();
+
+      if(selected !== 'defalut'){
+        $('section').hide();
+        $(`section.${selected}`).fadeIn();
+      }
+    })
+  }
+
+// Ajax calls to get data from page-1.json
+// Uses Horn object constructor to create object instances
+// Uses render prototype to display images as the instances are created
+$.get('/data/page-1.json', data => {
+    data.forEach(horn => {
+        let tempHorn = new Horn(horn);
+        tempHorn.render();
+    });
+    getKeywords(allHorns);
+    fillSelect();
+    handleFilter();
+});
