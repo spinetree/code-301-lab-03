@@ -26,6 +26,18 @@ Horn.prototype.toHtml = function() {
     return templateRender(this);
 }
 
+
+const sortArray = (arr) => {
+
+    arr.sort(function(a,b) {
+
+        return a.horns - b.horns;
+        
+    });
+    return arr;
+
+};
+
 // find all the keywords in allHorns
 const getKeywords = (arr) => {
     arr.forEach(horn => {
@@ -59,16 +71,24 @@ const handleFilter = () => {
     // TODO: make this handle the default value again with an if statement
 }
 
+
 // Ajax calls to get data from page-1.json
 // Uses Horn object constructor to create object instances
 // Uses render prototype to display images as the instances are created
 const loadHorns = (parameter) => {
 
     $.get(parameter, data => {
+        
         data.forEach(horn => {
-            let tempHorn = new Horn(horn);
-            tempHorn.render();
+            new Horn(horn);
         });
+
+        sortArray(allHorns);
+
+        allHorns.forEach(sortedHorn => {
+            sortedHorn.render();
+        });
+        
         getKeywords(allHorns);
         fillSelect();
         handleFilter();
