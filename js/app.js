@@ -33,6 +33,16 @@ Horn.prototype.render = function() {
 };
 
 
+// find all the keywords in allHorns
+const getKeywords = (arr) => {
+    arr.forEach(horn => {
+        if(!keywords.includes(horn.keyword)){
+            keywords.push(horn.keyword);
+        }
+    })
+}    
+
+// render the select list based on keywords available
 const fillSelect = () => {
     keywords.forEach(keyword => {
         const $newOption = $('<option></option>');
@@ -42,14 +52,8 @@ const fillSelect = () => {
     })
 }
 
-const getKeywords = (arr) => {
-    arr.forEach(horn => {
-        if(!keywords.includes(horn.keyword)){
-            keywords.push(horn.keyword);
-        }
-    })
-}               
 
+// do the show/hide when user makes a selection
 const handleFilter = () => {
     $('select').on('change', function() {
       let selected = $(this).val();
@@ -60,6 +64,8 @@ const handleFilter = () => {
       }
     })
   }
+
+  // TODO: abstract this out into a function that takes an argument for a different JSON file depending on the page
 
 // Ajax calls to get data from page-1.json
 // Uses Horn object constructor to create object instances
@@ -73,3 +79,9 @@ $.get('/data/page-1.json', data => {
     fillSelect();
     handleFilter();
 });
+
+// TODO: event handler for a button on the page that when clicked re-runs the above function
+
+// remove existing sections from the page
+// remove existing options from the select list
+// get some data from the button/link about which set of images it wants.
