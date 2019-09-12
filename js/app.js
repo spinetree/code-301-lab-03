@@ -16,27 +16,79 @@ function Horn(horn) {
     allHorns.push(this);
 };
 
-Horn.prototype.render = function() {
+Horn.prototype.render = function () {
     $('main').append(this.toHtml());
 }
 
-Horn.prototype.toHtml = function() {
+Horn.prototype.toHtml = function () {
     let template = $('#section-template').html();
     let templateRender = Handlebars.compile(template);
     return templateRender(this);
 }
 
 
-const sortArray = (arr) => {
+// const sortByHorns = (arr) => {
 
-    arr.sort(function(a,b) {
+//     arr.sort(function (a, b) {
+//         return a.horns - b.horns;
+//     });
+//     return arr;
 
-        return a.horns - b.horns;
-        
-    });
-    return arr;
+// };
+
+const sortByTitle = (arr) => {
+
+    // arr.sort(function(a,b) {
+    //     return a.title - b.title;
+    // });
+    // return arr;
+
+    // arr.sort(function (a, b) {
+    //     if (a.title < b.title) {
+    //         return -1;
+    //     }
+    //     if (a.title > b.title) {
+    //         return 1;
+    //     }
+    //     return 0;
+    // });
+    // return arr;
 
 };
+
+
+
+// sortHorns
+
+// get value of the sort select
+const sortHorns = (arr) => {
+
+    let selected = $('#sort').val();
+
+    if (selected === 'alpha') {
+
+        arr.sort(function (a, b) {
+            if (a.title < b.title) {
+                return -1;
+            }
+            if (a.title > b.title) {
+                return 1;
+            }
+            return 0;
+        });
+        return arr;
+
+    } else {
+
+        arr.sort(function (a, b) {
+            return a.horns - b.horns;
+        });
+        return arr;
+
+    }
+
+};
+
 
 // find all the keywords in allHorns
 const getKeywords = (arr) => {
@@ -54,13 +106,13 @@ const fillSelect = () => {
         $newOption.text(keyword);
         $newOption.attr('class', 'horn');
         $newOption.attr('value', keyword);
-        $('select').append($newOption);
+        $('#keyword').append($newOption);
     })
 }
 
 // do the show/hide when user makes a selection
 const handleFilter = () => {
-    $('select').on('change', function () {
+    $('#keyword').on('change', function () {
         let selected = $(this).val();
 
         if (selected !== 'defalut') {
@@ -68,7 +120,6 @@ const handleFilter = () => {
             $(`section.${selected}`).fadeIn();
         }
     })
-    // TODO: make this handle the default value again with an if statement
 }
 
 
@@ -78,17 +129,17 @@ const handleFilter = () => {
 const loadHorns = (parameter) => {
 
     $.get(parameter, data => {
-        
+
         data.forEach(horn => {
             new Horn(horn);
         });
 
-        sortArray(allHorns);
+        sortHorns(allHorns);
 
         allHorns.forEach(sortedHorn => {
             sortedHorn.render();
         });
-        
+
         getKeywords(allHorns);
         fillSelect();
         handleFilter();
@@ -101,8 +152,8 @@ loadHorns(dataFile);
 
 // event handler re-renders page when user clicks for a different set of data
 $('button').click(function () {
-    const detatchedOptions = $('option.horn').detach();
-    const detatchedSections = $('section.horn').detach();
+    let detatchedOptions = $('option.horn').detach();
+    let detatchedSections = $('section.horn').detach();
 
     allHorns = [];
 
@@ -112,6 +163,26 @@ $('button').click(function () {
     loadHorns(dataFile);
 
     // console.log(detatchedOptions);
+})
+
+
+
+$('#sort').on('change', function () {
+    let detatchedOptions = $('option.horn').detach();
+    let detatchedSections = $('section.horn').detach();
+    
+    sortHorns(allHorns);
+
+    allHorns.forEach(sortedHorn => {
+        sortedHorn.render();
+    });
+
+
+
+    getKeywords(allHorns);
+    fillSelect();
+    handleFilter();
+
 })
 
 // remove existing sections from the page
