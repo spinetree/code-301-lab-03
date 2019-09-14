@@ -1,3 +1,64 @@
 #photo-template {
   display: none;
 }
+
+
+/************************
+ Form controls 
+ *************************/
+
+
+.galleryControls {
+  padding: 16px;
+  background: #dedede;
+}
+
+.galleryControls fieldset {
+  margin: 16px 0 16px 0;
+}
+
+.galleryControls label {
+  text-align: left;
+  display: inline-block;
+  padding: 0 8px 0 0;
+}
+
+.galleryControls select {}
+
+.galleryControls button {
+  width: 100%;
+  margin-top: 16px;
+}
+
+
+@media (min-width: 767px) {
+
+  .galleryControls {
+    display: flex;
+  }
+
+  .galleryControls button {
+    margin: 0 0 0 0;
+  }
+
+}
+
+/* end media query */
+
+/* photo Gallery */
+
+
+@media (min-width: 767px) {
+  
+  .gallery {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .horn {
+    height: 310px;
+    width: 310px;
+    margin: 5px
+  }
+
+}

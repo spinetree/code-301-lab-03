@@ -4,3 +4,36 @@
   width: 100%;
   /* outline: solid 1px #777777; */
 }
+
+/*************************************
+Typography
+ *************************************/
+
+ h1 {font-size:2rem; line-height:3.2rem; text-align:center;}
+
+
+/*************************************
+ Form elements 
+ *************************************/
+
+label {
+    line-height: 32px;
+    display:inline-block;
+  }
+  
+  select {
+    border: 1px solid black;
+    height: 16px;
+    line-height:32px;
+    height:32px;
+    display:inline-block;
+  }
+  
+  button {
+    display: inline-block;
+    padding: 0 16px;
+    line-height:32px;
+    height:32px;
+    color: #dedede;
+    background: #666;
+  }
