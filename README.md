@@ -32,11 +32,11 @@ Number and name of feature: #3 Styling with Flexbox
 
 Estimate of time needed to complete: 1 hour
 
-Start time: 
+Start time: 8:30
 
-Finish time: 
+Finish time: 10:30
 
-Actual time needed to complete: 
+Actual time needed to complete: 2 hours
 
 
 ------------------------------------------
