@@ -1,3 +1,88 @@
 #photo-template {
   display: none;
 }
+
+
+/************************
+ Form controls 
+ *************************/
+
+
+.galleryControls {
+  padding: 16px;
+  background: #dedede;
+}
+
+.galleryControls fieldset {
+  margin: 16px 0;
+}
+
+.galleryControls label {
+  text-align: left;
+  display: inline-block;
+  padding: 0 8px 0 0;
+}
+
+.galleryControls select {
+  margin-right: 16px;
+  width: calc(100% - 32px);
+}
+
+.galleryControls button {
+  width: calc(50% - 16px);
+  /* margin-top: 16px; */
+}
+
+
+@media (min-width: 767px) {
+
+  .galleryControls {
+    display: flex;
+  }
+
+}
+
+
+/* photo Gallery */
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+
+.horn {
+  margin: 32px 8px 0;
+  flex: 1 1 280px;
+  padding: 16px;
+  max-width: 500px;
+  outline:3px solid #dedede;
+}
+
+.horn img {
+  margin: 16px 0;
+}
+
+.horn .description {
+  font-style: italic;
+  margin-top:16px;
+  text-align: left;
+  padding-top:16px;
+  border-top:1px solid #ccc;
+}
+
+@media (min-width: 767px) {
+
+  .gallery {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .horn {
+    /* height: 310px;
+    width: 310px;
+    margin: 5px */
+  }
+
+}

@@ -3,12 +3,11 @@ body {
 }
 
 section {
-  float: left;
   text-align: center;
 }
 
 section {
-  height: 320px;
+overflow:auto; 
 }
 
 img {
@@ -21,14 +20,12 @@ footer {
 }
 
 
+
 @media (min-width: 767px) {
+  
   body {
     width: 960px;
     margin: auto;
   }
-  section {
-    height: 310px;
-    width: 310px;
-    margin: 5px
-  }
+
 }
