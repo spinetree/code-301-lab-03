@@ -55,8 +55,8 @@ Number and name of feature: #4 Sort
 
 Estimate of time needed to complete: 1 hour
 
-Start time: 
+Start time: 1:30
 
-Finish time: 
+Finish time: 2:30
 
-Actual time needed to complete: 
+Actual time needed to complete: 1 hour
