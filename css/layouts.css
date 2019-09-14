@@ -3,12 +3,11 @@ body {
 }
 
 section {
-  float: left;
   text-align: center;
 }
 
 section {
-  height: 320px;
+overflow:auto; 
 }
 
 img {

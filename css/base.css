@@ -1,15 +1,35 @@
 * {
   box-sizing: border-box;
-  font-family: 'Roboto', sans-serif;
   width: 100%;
-  /* outline: solid 1px #777777; */
+}
+
+body {
+  background: #919183;
+  position:relative;
+}
+
+main {
+  background: #fefefe;
+  padding:8px;
+  margin: 16px 0;
 }
 
 /*************************************
 Typography
- *************************************/
+*************************************/
 
- h1 {font-size:2rem; line-height:3.2rem; text-align:center;}
+h1,
+h2 {
+  font-weight: 500;
+  font-family: 'Roboto', sans-serif;
+}
+
+h1 {
+  font-size: 2rem;
+  line-height: 4.8rem;
+  margin-top: 16px;
+  text-align: center;
+}
 
 
 /*************************************
@@ -17,23 +37,23 @@ Typography
  *************************************/
 
 label {
-    line-height: 32px;
-    display:inline-block;
-  }
-  
-  select {
-    border: 1px solid black;
-    height: 16px;
-    line-height:32px;
-    height:32px;
-    display:inline-block;
-  }
-  
-  button {
-    display: inline-block;
-    padding: 0 16px;
-    line-height:32px;
-    height:32px;
-    color: #dedede;
-    background: #666;
-  }
+  line-height: 32px;
+  display: inline-block;
+}
+
+select {
+  border: 1px solid black;
+  height: 16px;
+  line-height: 32px;
+  height: 32px;
+  display: inline-block;
+}
+
+button {
+  display: inline-block;
+  padding: 0 16px;
+  line-height: 32px;
+  height: 32px;
+  color: #dedede;
+  background: #666;
+}
