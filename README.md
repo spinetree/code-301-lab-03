@@ -1,5 +1,14 @@
 # code-301-lab-03
 
+------------------------------------------
+
+Team:
+
+Steve 
+Kyungrae
+
+------------------------------------------
+
 
 Number and name of feature: #1 Pagination
 
